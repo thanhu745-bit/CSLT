@@ -62,7 +62,7 @@ namespace CSLT.Session_03
             Console.WriteLine($"{num1} mod {num2} = {num1 % num2}");
         }
 
-        public static void Main(string[] args)
+        public static void Main3(string[] args)
         {
             Console.WriteLine("Nhap nhiet do (Celsius): ");
             BT_01();
