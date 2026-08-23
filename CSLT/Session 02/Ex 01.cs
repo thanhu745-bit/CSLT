@@ -6,7 +6,7 @@ namespace CSLT.Session_02
 {
     internal class Ex_01
     {
-        private static void Main(string[] args)
+        private static void Main2(string[] args)
         {
             //1. to Add / Sum Two Numbers.
             int a = 100;
