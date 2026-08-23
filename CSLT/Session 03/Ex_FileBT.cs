@@ -6,7 +6,7 @@ namespace CSLT.Session_03
 {
     internal class Ex_FileBT
     {
-        static void Main(string[] args)
+        static void Bai01()
         {
             int sodiencu, sodienmoi;
             do
@@ -52,6 +52,11 @@ namespace CSLT.Session_03
             decimal tax = totalbefortax * 0.08m;
             Console.WriteLine($"Tien thue: {tax:f2} VND");
             Console.WriteLine($"Tong thanh toán: {totalbefortax + tax:f2} VND");
+        }
+        public static void Main(string[] args)
+        {
+            Bai01();
+            Console.ReadKey();
         }
     }
 }
