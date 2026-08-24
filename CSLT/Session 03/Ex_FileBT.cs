@@ -53,7 +53,7 @@ namespace CSLT.Session_03
             Console.WriteLine($"Tien thue: {tax:f2} VND");
             Console.WriteLine($"Tong thanh toán: {totalbefortax + tax:f2} VND");
         }
-        public static void Main(string[] args)
+        public static void Main_File(string[] args)
         {
             Bai01();
             Console.ReadKey();
