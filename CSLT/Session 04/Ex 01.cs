@@ -83,6 +83,60 @@ namespace CSLT.Session_04
                 Console.WriteLine($"{inputChar} la mot ky tu khac");
 
         }
+        static void GiaiPT(int a, int b, int c)
+        {
+            if (a==0)
+            {
+                if (b == 0)
+                {
+                    if (c == 0)
+                        Console.WriteLine("Phuong trinh vo so nghiem");
+                    else
+                        Console.WriteLine("Vo ly");
+                }
+                else
+                {
+                    if (c == 0)
+                        Console.WriteLine("Phuong trinh co nghiem x = 0");
+                    else
+                        Console.WriteLine($"Phuong trinh co nghiem x = {-c / b}");
+                }
+            }
+            else
+            {
+                if (b == 0)
+                {
+                    if (c == 0)
+                        Console.WriteLine("Phuong trinh co nghiem x = 0");
+                    else
+                    {
+                        if (-c / a < 0)
+                            Console.WriteLine("Vo ly");
+                        else
+                            Console.WriteLine($"Phuong trinh co nghiem x = {Math.Sqrt(-c / a)} va x = {-Math.Sqrt(-c / a)}");
+                    }
+
+                }
+                else
+                {
+                    if (c == 0)
+                        Console.WriteLine($"Phuong trinh co nghiem x1 = 0 va x2 = {-b / a}");
+                    else
+                    {
+                        double delta = b * b - 4 * a * c;
+                        if (delta < 0)
+                            Console.WriteLine("Phuong trinh vo nghiem");
+                        else if (delta == 0)
+                            Console.WriteLine($"Phuowng trinh co nghiem kep x = {-b / 2 * a}");
+                        else
+                            Console.WriteLine($"Phuong trinh co nghiem x1 = {(-b + Math.Sqrt(delta)) / (2 * a)} va x2 = {(-b - Math.Sqrt(delta)) / (2 * a)}");
+                        
+                    }
+                }
+            }
+               
+
+        }
         public static void Main(string[] args)
         {          
             BT1();         
@@ -90,6 +144,11 @@ namespace CSLT.Session_04
             BT3();
             BT4();
             BT5();
+            Console.WriteLine("Nhap cac he so cua phuong trinh bac 2: ");
+            int a = int.Parse(Console.ReadLine());
+            int b = int.Parse(Console.ReadLine());
+            int c = int.Parse(Console.ReadLine());
+            GiaiPT(a, b, c);
             Console.ReadKey();
         }
     }
