@@ -137,7 +137,7 @@ namespace CSLT.Session_04
                
 
         }
-        public static void Main(string[] args)
+        public static void Main4(string[] args)
         {          
             BT1();         
             BT2();
