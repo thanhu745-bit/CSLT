@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace CSLT.Session_03
@@ -273,6 +275,124 @@ namespace CSLT.Session_03
 
 
         }
+        static void Bai08()
+        {
+            byte bao = 0;
+            int minu , seconds;
+            string OPT_goc = "839201", input_OTP, input_Time;
+            TimeSpan timepassed;
+            Console.WriteLine("Ma OTP nhan duoc :");
+            input_OTP = Console.ReadLine();
+            Console.WriteLine("Thoi gian troi qua :");
+            input_Time = Console.ReadLine();
+            string[] Time = input_Time.Split(' ');
+            int.TryParse(Time[0], out minu);
+            int.TryParse(Time[Time.Length - 2], out seconds);
+            timepassed = new TimeSpan(0, minu, seconds);
+            if (input_OTP.Length != 6)
+                Console.WriteLine("Định dạng không hợp lệ");
+            else
+            {
+                for (int i = 0; i < input_OTP.Length; i++)
+                    if (input_OTP[i] < '0' || input_OTP[i] > '9')
+                    {
+                        Console.WriteLine("Định dạng không hợp lệ");
+                        bao = 1;
+                        break;
+                    }
+                if (bao == 0)
+                {
+                    if (input_OTP == input_OTP)
+                    {
+                        if (timepassed.TotalSeconds <= 300)
+                                Console.WriteLine("THÀNH CÔNG - Giao dịch đã được phê duyệt");
+                        else
+                                Console.WriteLine("Loi : Het han OTP");                                                            
+
+                    }
+                    else
+                        Console.WriteLine(" Định dạng không hợp lệ");
+                }
+
+            }
+            Console.WriteLine("\n");
+        }
+        static void Bai09()
+        {
+            Console.WriteLine("Luong Gross:");
+            decimal Luong_Gross = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("So nguoi phu thuoc:");
+            int songuoi = int.Parse(Console.ReadLine());
+            decimal total_giamtru_BH = 10.5M / 100M * Luong_Gross;
+            decimal Thunhapchiuthue = Luong_Gross - total_giamtru_BH - 11000000 - (songuoi * 4400000);
+            if (Thunhapchiuthue <= 0)
+                Thunhapchiuthue = 0;
+            decimal tam = Thunhapchiuthue, TNCN = 0M;
+            if (tam > 80000000m)
+            {
+                TNCN += (tam - 80000000m) * 0.35m;
+                tam = 80000000m;
+            }
+            if (tam > 52000000m)
+            {
+                TNCN += (tam - 52000000m) * 0.30m;
+                tam = 52000000m;
+            }
+            if (tam > 32000000m)
+            {
+                TNCN += (tam - 32000000m) * 0.25m;
+                tam = 32000000m;
+            }
+            if (tam > 18000000m)
+            {
+                TNCN += (tam - 18000000m) * 0.20m;
+                tam = 18000000m;
+            }
+            if (tam > 10000000m)
+            {
+                TNCN += (tam - 10000000m) * 0.15m;
+                tam = 10000000m;
+            }
+            if (tam > 5000000m)
+            {
+                TNCN += (tam - 5000000m) * 0.10m;
+                tam = 5000000m;
+            }
+            if (tam > 0m)
+            {
+                TNCN += tam * 0.05m;
+            }
+            Console.WriteLine($"Giam tru Bao hiem (10.5%) : {total_giamtru_BH:N0}");
+            Console.WriteLine($"Thu nhap chiu thue :{Thunhapchiuthue:N0}");
+            Console.WriteLine($"Thue TNCN phai nop:{TNCN:N0}");
+            Console.WriteLine($"Luong NET thuc nhan: {(Luong_Gross - total_giamtru_BH - TNCN):N0}");
+            Console.WriteLine("\n");
+
+        }
+        static void Bai11()
+        {
+            decimal P;
+            double r, ans;
+            int n;
+            Console.WriteLine("So tien gui:");
+            P = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("Lai suat nam:");
+            r = double.Parse(Console.ReadLine());
+            Console.WriteLine("Thoi gian gui:");
+            n = int.Parse(Console.ReadLine());
+            decimal Simple_Interest, Compound_Interest;
+            Simple_Interest = P * (decimal)(r / 100.0) * (decimal)(n / 12.0);
+            ans =Math.Pow(1.0 + (r / 100.0) / 12.0, n);
+            Compound_Interest = (decimal)ans * P - P;
+            Console.WriteLine($"Tong tien lai (lai don): {Simple_Interest:N0}");
+            Console.WriteLine($"Tong tien lai (lai kep): {Compound_Interest:N0}");
+            if (Simple_Interest > Compound_Interest)
+                Console.WriteLine($"Loi nhuan chenh lech: {(Simple_Interest - Compound_Interest):N0}");
+            else
+                Console.WriteLine($"Loi nhuan chenh lech: {(Compound_Interest - Simple_Interest):N0}");
+            Console.WriteLine("\n");
+
+        }
 
         public static void Main(string[] args)
         {
@@ -284,6 +404,9 @@ namespace CSLT.Session_03
             Bai05();
             Bai06();
             Bai07();
+            Bai08();
+            Bai09();
+            Bai11();
             Console.ReadKey();
         }
     }
