@@ -394,7 +394,7 @@ namespace CSLT.Session_03
 
         }
 
-        public static void Main(string[] args)
+        public static void Main_3_2(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Bai01();
