@@ -121,7 +121,7 @@ namespace CSLT.Session_04
                 Console.WriteLine($"({x},{y}) khong thuoc goc phan tu nao ca");
 
         }
-        public static void Main(string[] args)
+        public static void Main_nop(string[] args)
         {
             Console.WriteLine("Nhap cac he so cua phuong trinh bac 2: ");
             int a = int.Parse(Console.ReadLine());
