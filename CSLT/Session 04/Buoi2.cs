@@ -147,6 +147,8 @@ namespace CSLT.Session_04
         static void BT7()
         {
             int left, right,sum;
+            byte bao = 0;
+            Console.WriteLine("Nhap gioi han hai dau cua day so");
             left = int.Parse(Console.ReadLine());
             right = int.Parse(Console.ReadLine());
             Console.WriteLine($"Day so 'Perfect' tu {left} den {right}: ");
@@ -158,16 +160,21 @@ namespace CSLT.Session_04
                 {
                     if (i % j == 0)
                     {
-                        sum += j;
+                        if (i != j) sum += j;
                         if (j != i / j && j != 1)
                             sum += i / j;
                     }
                 }
                 if (sum == i)
+                {
                     Console.Write($"{i} ");
+                    bao = 1;
+                }
 
 
             }
+            if (bao == 0)
+                Console.WriteLine("Khong có");
             
         }
 
