@@ -87,7 +87,7 @@ namespace CSLT.Session_05
             return 1;
 
         }
-        public static void Main(string[] args)
+        public static void Main05_01(string[] args)
         {
             //Bai 1: Write a C# function to find the maximum of three numbers
             Console.WriteLine("Nhap vao lan luot ba so :");
