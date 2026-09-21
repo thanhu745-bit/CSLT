@@ -85,6 +85,45 @@ namespace CSLT.Session_05
                 tich *= (long)x;
             return tich;
         }
+        static bool KiemTraDoiXung(string s)
+        {
+            char[] a = s.ToCharArray();
+            Array.Reverse(a);
+            string ans = new string(a);
+            if (ans == s) return true;
+            else
+                return false;
+
+        }
+        static double CelsiusToFahrenheit(double c)
+        {
+            return c * 1.8D + 32D;
+        }
+        static int TimMin(int[] arr)
+        {
+            int ans = int.MaxValue;
+            for (int i = 0; i < arr.Length; i++)
+                ans = Math.Min(ans, arr[i]);
+            return ans;
+
+        }
+        static int TongCacChuSo(int n)
+        {
+            int sum = 0;
+            while (n != 0)
+            {
+                sum += n % 10;
+                n = n / 10;
+            }
+            return sum;
+        }
+        static void SapXepMang(int[] arr)
+        {
+            Array.Sort(arr);
+            for (int i = 0; i < arr.Length; i++)
+                Console.Write($"{arr[i]} ");
+
+        }
         public static void Main(string[] args)
         {
             //Bai 1: Tinh tong hai so nguyen
@@ -148,12 +187,47 @@ namespace CSLT.Session_05
             for (int i = 0; i < s3.Length; i++)
                 arr[i] = int.Parse(s3[i]);
             Console.WriteLine($"Gia tri trung binh cua mang: {TinhTrungbinh(arr)}");
+            Console.WriteLine("\n");
+            //Bai 11: Kiem tra tinh doi xung
+            string s4 = Console.ReadLine();
+            if (KiemTraDoiXung(s4))
+                Console.WriteLine("True");
+            else
+                Console.WriteLine("False");
+            Console.WriteLine("\n");
+            //Bai 12: Chuyen doi nhiet do
+                Console.WriteLine("Nhap vao do C:");
+            double Do_C = double.Parse(Console.ReadLine());
+            Console.WriteLine($"{Do_C} do C = {CelsiusToFahrenheit(Do_C)} do F");
+            Console.WriteLine("\n");
+            //Bai 13: Tim gia tri nho nhat trong mang            
+            Console.WriteLine("Nhap vao n - kich thuoc cua mang");
+            int n_13 = int.Parse(Console.ReadLine());
+            int[] B = new int[n_13];
+            Console.WriteLine("Nhap cac phan tu");
+            for (int i = 0; i < n_13; i++)
+                B[i] = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Gia tri Min cua mang : {TimMin(B)}");
+            Console.WriteLine("\n");
+            //Bai 14: Tinh tong cac chu so cua mot so nguyen
+            Console.WriteLine("Nhap vao mot so nguyen");
+            int n_14 = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Tong cac chu so cua {n_14} : {TongCacChuSo(n_14)}");
+            //Bai 15: Sap xep mang tang dan
+            Console.WriteLine("Nhap vao n - kich thuoc cua mang");
+            int n_15 = int.Parse(Console.ReadLine());
+            int[] C = new int[n_15];
+            Console.WriteLine("Nhap cac phan tu");
+            for (int i = 0; i < n_15; i++)
+                C[i] = int.Parse(Console.ReadLine());
+            SapXepMang(C);
+            
 
 
 
 
 
-
+            Console.ReadKey();
 
         }
 
