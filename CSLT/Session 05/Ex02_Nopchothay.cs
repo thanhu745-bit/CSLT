@@ -164,6 +164,11 @@ namespace CSLT.Session_05
                 return true;
             return false;
         }
+        static int Demsotu(string sentence)
+        {
+            string[] arr = sentence.Split(' ');
+            return arr.Length;
+        }
         public static void Main(string[] args)
         {
             //Bai 1: Tinh tong hai so nguyen
@@ -306,6 +311,9 @@ namespace CSLT.Session_05
             Console.WriteLine("\n");
 
             //Bai 20:Dem so tu trong cau
+            string s_20 = Console.ReadLine();
+            Console.WriteLine($"So luong tu co trong cau : {Demsotu(s_20)}");
+
 
 
 
