@@ -124,6 +124,46 @@ namespace CSLT.Session_05
                 Console.Write($"{arr[i]} ");
 
         }
+        static string XoaTrungLap(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return s;
+            return new string(s.Distinct().ToArray());
+        }
+        static int UCLN(int a, int b)
+        {
+            while (b != 0)
+            {
+                int tam = b;
+                b = a % b;
+                a = tam;
+            }
+            return a;
+        }
+        static string DecimalTobinary(int n)
+        {
+            string ans = "";
+            if (n == 0) return "0";
+            while (n!=0)
+            {
+                int tam = n % 2;
+                ans = ans + tam;
+                n = n / 2;
+               
+            }
+            char[] charArr = ans.ToString().ToCharArray();
+            Array.Reverse(charArr);
+            return new string(charArr);
+
+
+        }
+        static bool KiemtraNamNhuan(int year)
+        {
+            if (year % 400 == 0)
+                return true;
+            if (year % 4 == 0 && year % 100 != 0)
+                return true;
+            return false;
+        }
         public static void Main(string[] args)
         {
             //Bai 1: Tinh tong hai so nguyen
@@ -132,6 +172,7 @@ namespace CSLT.Session_05
             int b = int.Parse(Console.ReadLine());
             Console.WriteLine($"{a} + {b} = {TinhTong(a, b)}");
             Console.WriteLine("\n");
+
             //Bai 2: Kiem tra so chan le
             Console.WriteLine("Nhap vao so de check");
             int n = int.Parse(Console.ReadLine());
@@ -140,6 +181,7 @@ namespace CSLT.Session_05
             else
                 Console.WriteLine($"{n} la so le");
             Console.WriteLine("\n");
+
             //Bai 3: Tim so lon nhat trong ba so
             Console.WriteLine("Nhap vao ba so x y z");
             int x = int.Parse(Console.ReadLine());
@@ -147,16 +189,19 @@ namespace CSLT.Session_05
             int z = int.Parse(Console.ReadLine());
             Console.WriteLine($"So lon nhat trong ba so: {TimMax(x, y, z)}");
             Console.WriteLine("\n");
+
             //Bai 4: Tinh giai thua cua mot so
             Console.WriteLine("Nhap vao m");
             int m = int.Parse(Console.ReadLine());
             Console.WriteLine($"{m}! = {TinhGiaiThua(m)}");
             Console.WriteLine("\n");
+
             //Bai 5: Dao nguoc chuoi ky tu
             Console.WriteLine("Nhap vao chuoi ky tu");
             string s = Console.ReadLine();
             Console.WriteLine($"Chuoi dao nguoc: {DaoNguocChuoi(s)}");
             Console.WriteLine("\n");
+
             //Bai 6: Kiem tra so nguyen to
             Console.WriteLine("Nhap vao mot so de ktra snto");
             int k = int.Parse(Console.ReadLine());
@@ -164,21 +209,25 @@ namespace CSLT.Session_05
                 Console.WriteLine("True");
             else
                 Console.WriteLine("False");
+
             //Bai 7: In day Fibonacci
             Console.WriteLine("Nhap vao T - T so dau tien cua day Fibonacci");
             int T = int.Parse(Console.ReadLine());
             InFibonacci(T);
             Console.WriteLine("\n");
+
             //Bai 8: Dem so luong nguyen am trong chuoi
             Console.WriteLine("Nhap vao chuoi ky tu");
             string s1 = Console.ReadLine();
             Console.WriteLine($"So luong ky tu nguyen am : {DemNguyenAm(s1)}");
             Console.WriteLine("\n");
+
             //Bai 9: Tinh luy thua
             Console.WriteLine("Nhap vao hai so x1 y1");
             double x1 = int.Parse(Console.ReadLine());
             int y1 = int.Parse(Console.ReadLine());
             Console.WriteLine($"x^y = {TinhLuyThua(x1, y1)}");
+
             //Bai 10: Tinh diem trung binh cua mang
             Console.WriteLine("Nhap vao 1 mang:");
             string s2 = Console.ReadLine();
@@ -188,6 +237,7 @@ namespace CSLT.Session_05
                 arr[i] = int.Parse(s3[i]);
             Console.WriteLine($"Gia tri trung binh cua mang: {TinhTrungbinh(arr)}");
             Console.WriteLine("\n");
+
             //Bai 11: Kiem tra tinh doi xung
             string s4 = Console.ReadLine();
             if (KiemTraDoiXung(s4))
@@ -195,11 +245,13 @@ namespace CSLT.Session_05
             else
                 Console.WriteLine("False");
             Console.WriteLine("\n");
+
             //Bai 12: Chuyen doi nhiet do
-                Console.WriteLine("Nhap vao do C:");
+            Console.WriteLine("Nhap vao do C:");
             double Do_C = double.Parse(Console.ReadLine());
             Console.WriteLine($"{Do_C} do C = {CelsiusToFahrenheit(Do_C)} do F");
             Console.WriteLine("\n");
+
             //Bai 13: Tim gia tri nho nhat trong mang            
             Console.WriteLine("Nhap vao n - kich thuoc cua mang");
             int n_13 = int.Parse(Console.ReadLine());
@@ -209,10 +261,13 @@ namespace CSLT.Session_05
                 B[i] = int.Parse(Console.ReadLine());
             Console.WriteLine($"Gia tri Min cua mang : {TimMin(B)}");
             Console.WriteLine("\n");
+
             //Bai 14: Tinh tong cac chu so cua mot so nguyen
             Console.WriteLine("Nhap vao mot so nguyen");
             int n_14 = int.Parse(Console.ReadLine());
             Console.WriteLine($"Tong cac chu so cua {n_14} : {TongCacChuSo(n_14)}");
+            Console.WriteLine("\n");
+
             //Bai 15: Sap xep mang tang dan
             Console.WriteLine("Nhap vao n - kich thuoc cua mang");
             int n_15 = int.Parse(Console.ReadLine());
@@ -221,7 +276,36 @@ namespace CSLT.Session_05
             for (int i = 0; i < n_15; i++)
                 C[i] = int.Parse(Console.ReadLine());
             SapXepMang(C);
-            
+            Console.WriteLine("\n");
+
+            //Bai 16: Xoa ki tu trung lap
+            Console.WriteLine("Nhap vao 1 chuoi ky tu");
+            string s_16 = Console.ReadLine();
+            Console.WriteLine($"Chuoi ky tu sau khi xoa ki tu trung: {XoaTrungLap(s_16)}");
+            Console.WriteLine("\n");
+
+            //Bai 17: Tim UCLN
+            Console.WriteLine("Nhap vao hai so a b");
+            int a_17 = int.Parse(Console.ReadLine());
+            int b_17 = int.Parse(Console.ReadLine());
+            Console.WriteLine($"UCLN cua {a_17} va {b_17} : {UCLN(a_17, b_17)}");
+            Console.WriteLine("\n");
+
+            //Bai 18:Chuyen do he thap phan sang nhi phan
+            Console.WriteLine("Nhap vao n - he thap phan");
+            int n_18 = int.Parse(Console.ReadLine());
+            Console.WriteLine($"{n_18} chuyen sang nhi phan la : {DecimalTobinary(n_18)}");
+            Console.WriteLine("\n");
+
+            //Bai 19: Kiem tra nam nhuan
+            int n_19 = int.Parse(Console.ReadLine());
+            if (KiemtraNamNhuan(n_19))
+                Console.WriteLine($"{n_19} la nam nhuan ");
+            else
+                Console.WriteLine($"{n_19} khong la nam nhuan ");
+            Console.WriteLine("\n");
+
+            //Bai 20:Dem so tu trong cau
 
 
 
