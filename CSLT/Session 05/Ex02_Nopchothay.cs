@@ -169,7 +169,7 @@ namespace CSLT.Session_05
             string[] arr = sentence.Split(' ');
             return arr.Length;
         }
-        public static void Main(string[] args)
+        public static void Main5(string[] args)
         {
             //Bai 1: Tinh tong hai so nguyen
             Console.WriteLine("Nhap vao hai so a va b");
