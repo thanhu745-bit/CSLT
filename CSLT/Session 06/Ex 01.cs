@@ -268,7 +268,7 @@ namespace CSLT.Session_06
         
     
 
-        public static void Main(string[] args)
+        public static void Main6(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
             Random rand = new Random();
