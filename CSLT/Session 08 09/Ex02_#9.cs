@@ -6,7 +6,7 @@ using System.IO;
 
 namespace CSLT.Session_08_09
 {
-    internal class Ex01_Nop
+    internal class Ex02
     {
         //1.to create a blank file on the disk.
         static void CreateBlankFile(string filePath)
@@ -157,43 +157,21 @@ namespace CSLT.Session_08_09
         }
 
         // 15. Đọc tệp văn bản, thống kê tần suất xuất hiện của ký tự & số + lưu vị trí (Jagged Array)
-        public static void ThongKeKyTuVaViTri(string filePath)
+        public static void ThongKeKyTuVaSo(string filePath)
         {
             if (!File.Exists(filePath))
             {
                 Console.WriteLine("File không tồn tại!");
                 return;
             }
+            int[,] charStats = new int[256, 2];
 
+            for (int i = 0; i < 256; i++)
+            {
+                charStats[i, 0] = i; 
+                charStats[i, 1] = 0; 
+            }
             string[] lines = File.ReadAllLines(filePath);
-            int[,] stats = new int[256, 2];
-            for (int i = 0; i < 256; i++)
-            {
-                stats[i, 0] = i;
-                stats[i, 1] = 0;
-            }
-           for (int row = 0; row < lines.Length; row++)
-            {
-                for (int col = 0; col < lines[row].Length; col++)
-                {
-                    char c = lines[row][col];
-                    if (c < 256 && char.IsLetterOrDigit(c))
-                    {
-                        stats[c, 1]++;
-                    }
-                }
-            }
-            int[][] positions = new int[256][];
-            for (int i = 0; i < 256; i++)
-            {
-                int count = stats[i, 1];
-                if (count > 0)
-                {
-                    positions[i] = new int[count * 2];
-                }
-            }
-
-            int[] currentIndices = new int[256]; 
             for (int row = 0; row < lines.Length; row++)
             {
                 for (int col = 0; col < lines[row].Length; col++)
@@ -201,37 +179,34 @@ namespace CSLT.Session_08_09
                     char c = lines[row][col];
                     if (c < 256 && char.IsLetterOrDigit(c))
                     {
-                        int idx = currentIndices[c];
-                        positions[c][idx] = row + 1;
-                        positions[c][idx + 1] = col + 1;
-                        currentIndices[c] += 2;
+                        charStats[c, 1]++; 
                     }
                 }
             }
-            Console.WriteLine("=== THỐNG KÊ KÝ TỰ VÀ VỊ TRÍ XUẤT HIỆN ===");
+            Console.WriteLine("=== BẢNG THỐNG KÊ TẦN SUẤT XUẤT HIỆN KÝ TỰ & CHỮ SỐ ===");
+            bool foundAny = false;
+
             for (int i = 0; i < 256; i++)
             {
-                char c = (char)stats[i, 0];
-                int count = stats[i, 1];
+                char c = (char)charStats[i, 0];
+                int count = charStats[i, 1];
 
                 if (count > 0)
                 {
                     Console.WriteLine($"Ký tự '{c}': xuất hiện {count} lần.");
-                    Console.Write("  Vị trí (dòng, cột): ");
-
-                    for (int k = 0; k < positions[i].Length; k += 2)
-                    {
-                        int r = positions[i][k];
-                        int col = positions[i][k + 1];
-                        Console.Write($"({r},{col}) ");
-                    }
-                    Console.WriteLine("\n");
+                    foundAny = true;
                 }
+            }
+
+            if (!foundAny)
+            {
+                Console.WriteLine("Không tìm thấy chữ cái hoặc chữ số nào trong file.");
             }
         }
     
 
-        public static void Main8(string[] args)
+
+public static void Main(string[] args)
         {
             // 1. Tạo tệp rỗng
             CreateBlankFile("test.txt");
@@ -266,7 +241,7 @@ namespace CSLT.Session_08_09
             Console.WriteLine("--- CAU TRUC THU MUC ---");
             PrintFolderStructure(Directory.GetCurrentDirectory());
             // 15. 
-            ThongKeKyTuVaViTri(filename);
+            ThongKeKyTuVaSo(filename);
 
 
 
