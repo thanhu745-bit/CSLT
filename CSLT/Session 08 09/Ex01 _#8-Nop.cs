@@ -157,39 +157,43 @@ namespace CSLT.Session_08_09
         }
 
         // 15. Đọc tệp văn bản, thống kê tần suất xuất hiện của ký tự & số + lưu vị trí (Jagged Array)
-        public static void StatisticCharactersAndNumbers(string filePath)
+        public static void ThongKeKyTuVaViTri(string filePath)
         {
-            if (!File.Exists(filePath)) return;
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("File không tồn tại!");
+                return;
+            }
 
             string[] lines = File.ReadAllLines(filePath);
-            int[,] charCounts = new int[256, 2];
+            int[,] stats = new int[256, 2];
             for (int i = 0; i < 256; i++)
             {
-                charCounts[i, 0] = i; // Mã ASCII
-                charCounts[i, 1] = 0; // Số lần xuất hiện
+                stats[i, 0] = i;
+                stats[i, 1] = 0;
             }
-            for (int row = 0; row < lines.Length; row++)
+           for (int row = 0; row < lines.Length; row++)
             {
                 for (int col = 0; col < lines[row].Length; col++)
                 {
                     char c = lines[row][col];
-                    if (c < 256)
+                    if (c < 256 && char.IsLetterOrDigit(c))
                     {
-                        charCounts[c, 1]++;
+                        stats[c, 1]++;
                     }
                 }
             }
             int[][] positions = new int[256][];
             for (int i = 0; i < 256; i++)
             {
-                if (charCounts[i, 1] > 0)
+                int count = stats[i, 1];
+                if (count > 0)
                 {
-                   positions[i] = new int[charCounts[i, 1] * 2];
+                    positions[i] = new int[count * 2];
                 }
             }
 
-           
-            int[] currentIndices = new int[256];
+            int[] currentIndices = new int[256]; 
             for (int row = 0; row < lines.Length; row++)
             {
                 for (int col = 0; col < lines[row].Length; col++)
@@ -198,18 +202,19 @@ namespace CSLT.Session_08_09
                     if (c < 256 && char.IsLetterOrDigit(c))
                     {
                         int idx = currentIndices[c];
-                        positions[c][idx] = row + 1;     
-                        positions[c][idx + 1] = col + 1; 
+                        positions[c][idx] = row + 1;
+                        positions[c][idx + 1] = col + 1;
                         currentIndices[c] += 2;
                     }
                 }
             }
+            Console.WriteLine("=== THỐNG KÊ KÝ TỰ VÀ VỊ TRÍ XUẤT HIỆN ===");
             for (int i = 0; i < 256; i++)
             {
-                char c = (char)charCounts[i, 0];
-                int count = charCounts[i, 1];
+                char c = (char)stats[i, 0];
+                int count = stats[i, 1];
 
-                if (char.IsLetterOrDigit(c) && count > 0)
+                if (count > 0)
                 {
                     Console.WriteLine($"Ký tự '{c}': xuất hiện {count} lần.");
                     Console.Write("  Vị trí (dòng, cột): ");
@@ -220,10 +225,12 @@ namespace CSLT.Session_08_09
                         int col = positions[i][k + 1];
                         Console.Write($"({r},{col}) ");
                     }
-                    Console.WriteLine();
+                    Console.WriteLine("\n");
                 }
             }
         }
+    
+
         public static void Main(string[] args)
         {
             // 1. Tạo tệp rỗng
@@ -258,6 +265,9 @@ namespace CSLT.Session_08_09
             // 14. In cấu trúc thư mục hiện tại
             Console.WriteLine("--- CAU TRUC THU MUC ---");
             PrintFolderStructure(Directory.GetCurrentDirectory());
+            // 15. 
+            ThongKeKyTuVaViTri(filename);
+
 
 
 
