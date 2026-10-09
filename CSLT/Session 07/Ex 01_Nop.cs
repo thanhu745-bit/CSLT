@@ -115,7 +115,7 @@ namespace CSLT.Session_07
             }
             return dem;
         }
-        public static void Main(string[] args)
+        public static void Main7(string[] args)
         {
             string input = Console.ReadLine();
             //-to input a string and print it.
